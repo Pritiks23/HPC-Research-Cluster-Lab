@@ -85,6 +85,7 @@ python3 monitoring/cluster_health.py
 ```
 
 ---
+<img width="2704" height="1750" alt="image" src="https://github.com/user-attachments/assets/1ad7ed21-6b88-42a3-8438-0ad9effaf744" />
 
 ## Example Workload
 
@@ -115,8 +116,19 @@ ansible-playbook automation/install_packages.yml
 ```
 
 ---
+<img width="2704" height="1750" alt="image" src="https://github.com/user-attachments/assets/a15da322-68b6-4b6e-8694-db08e3351bb1" />
+
 
 ## Incident Response Scenarios
+💥 INCIDENT: “HPC Job Failure Due to Missing Input File”
+During a simulated job failure, I identified a file path resolution issue caused by relative directory assumptions. I refactored the script to use absolute paths and introduced a controlled working directory structure to ensure reproducibility and prevent similar failures in HPC batch environments.”
+Incident: <img width="2704" height="1750" alt="image" src="https://github.com/user-attachments/assets/6893aedb-f1a4-419c-a807-56319d226d54" />
+
+Diagnosis: <img width="1332" height="338" alt="image" src="https://github.com/user-attachments/assets/26f6b772-c30a-48b6-b631-1b731d83cebf" />
+
+Resolution: 
+<img width="1496" height="648" alt="image" src="https://github.com/user-attachments/assets/c09535da-05f5-40c2-88cd-40628fcd9312" />
+
 
 The project includes operational runbooks for:
 
