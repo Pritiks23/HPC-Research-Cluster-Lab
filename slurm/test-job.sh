@@ -1,12 +1,23 @@
 #!/bin/bash
-#SBATCH --job-name=test-job
-#SBATCH --output=test-job-%j.out
-#SBATCH --time=00:01:00
-#SBATCH --partition=debug
 
-set -euo pipefail
+echo "======================================="
+echo "HPC Research Job Started"
+echo "======================================="
 
-echo "Running on host: $(hostname)"
-echo "Allocated CPUs: ${SLURM_CPUS_ON_NODE:-unknown}"
-sleep 2
-echo "Test job completed successfully."
+echo "Host:"
+hostname
+
+echo ""
+echo "Current Time:"
+date
+
+echo ""
+echo "Running scientific workload..."
+
+sleep 10
+
+echo ""
+echo "Simulation Complete"
+
+echo ""
+echo "Job Finished Successfully"
