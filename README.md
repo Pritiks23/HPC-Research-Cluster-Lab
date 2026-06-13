@@ -121,14 +121,44 @@ ansible-playbook automation/install_packages.yml
 
 ## Incident Response Scenarios
 💥 INCIDENT: “HPC Job Failure Due to Missing Input File”
-During a simulated job failure, I identified a file path resolution issue caused by relative directory assumptions. I refactored the script to use absolute paths and introduced a controlled working directory structure to ensure reproducibility and prevent similar failures in HPC batch environments.”
+A simulated HPC batch job failed during execution due to a missing input file dependency. The incident was used to demonstrate troubleshooting workflows commonly performed in HPC environments, including job failure analysis, file system validation, and corrective remediation.
+
 Incident: <img width="2704" height="1750" alt="image" src="https://github.com/user-attachments/assets/6893aedb-f1a4-419c-a807-56319d226d54" />
+The job script attempted to read an input dataset (`missing_input.dat`) that was not present in the expected working directory. As a result, the job terminated with a file-not-found error during execution of the `cat` command.
 
 Diagnosis: <img width="1332" height="338" alt="image" src="https://github.com/user-attachments/assets/26f6b772-c30a-48b6-b631-1b731d83cebf" />
+The issue was diagnosed using standard Linux debugging techniques:
+
+- Verified script contents and execution flow using `cat`
+- Inspected file existence using `ls`
+- Observed runtime error indicating missing file dependency
+- Identified that the script relied on a relative file path, which caused a mismatch between expected and actual file locations
+
+This confirmed the root cause as a **missing input file combined with an unvalidated file path assumption in the job script**.
+
 
 Resolution: 
 <img width="1496" height="648" alt="image" src="https://github.com/user-attachments/assets/c09535da-05f5-40c2-88cd-40628fcd9312" />
+The issue was resolved by refactoring the job script to improve robustness and reproducibility:
 
+- Introduced a defined working directory (`/tmp/hpc_incident`)
+- Converted file paths to absolute references to eliminate ambiguity
+- Added a conditional check to detect missing input files
+- Implemented automatic generation of a fallback dataset when input data is unavailable
+- Re-ran the job successfully, confirming recovery
+
+---
+The corrected workflow executed successfully, demonstrating proper handling of missing dependencies and improved fault tolerance. This exercise reflects real-world HPC operational practices where user-submitted jobs must be validated, debugged, and made resilient to common execution errors.
+
+## Skills Demonstrated
+
+- Linux command-line debugging
+- File system and path resolution troubleshooting
+- Shell scripting and error handling
+- HPC-style job failure analysis
+- Operational incident response workflow
+
+Extra:
 
 The project includes operational runbooks for:
 
@@ -144,14 +174,3 @@ Each incident includes:
 - Resolution
 - Prevention
 
----
-
-## Skills Demonstrated
-
-- Linux Administration
-- Bash Scripting
-- Python Automation
-- Slurm Fundamentals
-- Monitoring and Troubleshooting
-- Technical Documentation
-- Infrastructure as Code
