@@ -1,12 +1,22 @@
 ---
-- name: Install HPC lab dependencies
-  hosts: all
-  become: true
+- hosts: localhost
+  connection: local
+
   tasks:
-    - name: Install required packages
-      ansible.builtin.package:
+
+    - name: Install monitoring tools
+      apt:
         name:
-          - slurm-wlm
           - htop
-          - python3
+          - tree
+          - curl
+          - wget
         state: present
+      become: yes
+
+    - name: Verify htop installation
+      command: which htop
+      register: htop_result
+
+    - debug:
+        var: htop_result.stdout
