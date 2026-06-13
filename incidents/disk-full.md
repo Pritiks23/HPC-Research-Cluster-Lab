@@ -1,10 +1,35 @@
-# Incident: Disk Full
+# Incident Report: Disk Full
 
 ## Summary
-Job execution failed due to insufficient disk space on a compute node.
 
-## Response Steps
-1. Identify utilization with `df -h` and `du -sh /var/log/*`.
-2. Clear temporary files and rotate/archive old logs.
-3. Confirm free space threshold is restored.
-4. Re-run failed jobs and monitor disk growth.
+Research jobs failed due to lack of disk space.
+
+## Symptoms
+
+- Output files failed to write
+- Job failures increased
+
+## Investigation
+
+```bash
+df -h
+```
+
+Filesystem reached maximum utilization.
+
+## Root Cause
+
+Large temporary files accumulated.
+
+## Resolution
+
+```bash
+rm -rf /tmp/*
+```
+
+Storage usage returned to normal.
+
+## Prevention
+
+- Implement cleanup policies
+- Monitor disk utilization
