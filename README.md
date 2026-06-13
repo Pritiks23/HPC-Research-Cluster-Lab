@@ -53,16 +53,18 @@ screenshots/
 ## Simulated Cluster Architecture
 
 ```text
-            +----------------+
-            |   Head Node    |
-            | Slurm Control  |
-            +--------+-------+
+                  Head Node
+          +---------------------+
+          | Slurm Controller    |
+          | Monitoring Scripts  |
+          +----------+----------+
                      |
-      +--------------+--------------+
-      |                             |
-+-----------+               +-----------+
-| Compute 1 |               | Compute 2 |
-+-----------+               +-----------+
+       +-------------+-------------+
+       |                           |
++--------------+           +--------------+
+| Compute Node |           | Compute Node |
+| Research Jobs|           | Research Jobs|
++--------------+           +--------------+
 ```
 
 ---
